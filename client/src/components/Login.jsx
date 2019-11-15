@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 
 import axiosAuth from "../utils/axiosAuth";
 
-const Login = () => {
+const Login = props => {
   const [form, setForm] = useState({
     username: "Lambda School",
     password: "i<3Lambd4"
@@ -17,7 +17,10 @@ const Login = () => {
   const handleSubmit = useCallback(() => {
     axiosAuth()
       .post(`http://localhost:5000/api/login`, form)
-      .then(res => sessionStorage.setItem("token", res.data.payload))
+      .then(res => {
+        sessionStorage.setItem("token", res.data.payload);
+        props.history.push("/bubblepage");
+      })
       .catch(err => console.error(err));
   }, [form]);
 

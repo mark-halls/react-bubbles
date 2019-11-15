@@ -22,7 +22,7 @@ const Login = props => {
         props.history.push("/bubblepage");
       })
       .catch(err => console.error(err));
-  }, [form]);
+  }, [form, props.history]);
 
   return (
     <div>
